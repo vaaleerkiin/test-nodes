@@ -1,22 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { EdgeType } from "../Types/edge";
 
 export const edgeSlice = createSlice({
   name: "edge",
   initialState: { edges: [] } as {
-    edges: Array<{
-      id: string;
-      source: string;
-      target: string;
-      type?: string;
-    }>;
+    edges: Array<EdgeType>;
   },
   reducers: {
     renderAdges: (state, { payload }: { payload: number }) => {
       const edges = [];
 
       for (let i = 0; i <= payload - 1; i += 1) {
-        console.log(i);
-
         edges.push({
           id: `e${i}-${i + 1}`,
           source: `${i}`,
@@ -24,7 +18,7 @@ export const edgeSlice = createSlice({
           type: "smoothstep",
         });
       }
-      console.log(edges);
+
       return { edges };
     },
   },

@@ -14,30 +14,41 @@ const options = [
   { value: "6", label: "6" },
 ];
 
-export default memo(({ data, id }: any) => {
-  const dispath = useDispatch();
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispath(addNode({ label: e.target.value, currentId: id }));
-  };
+export default memo(
+  ({
+    data,
+    id,
+  }: {
+    data: { label: string; value: string; parentsLabel: string };
+    id: string;
+  }) => {
+    const dispath = useDispatch();
+    const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      dispath(addNode({ label: e.target.value, currentId: id }));
+    };
 
-  return (
-    <>
-      {id !== "0" && (
-        <Handle type="target" position={Position.Top} isConnectable={true} />
-      )}
-      <select className="select" onChange={onChange} defaultValue={data.label}>
-        {options.map((el) => (
-          <option
-            key={el.value}
-            disabled={el.value === "0"}
-            value={`${el.value}`}
-          >
-            {el.value !== "0" && data.parentsLabel}
-            {el.label}
-          </option>
-        ))}
-      </select>
-      <Handle type="source" position={Position.Bottom} isConnectable={true} />
-    </>
-  );
-});
+    return (
+      <>
+        {id !== "0" && <Handle type="target" position={Position.Top} />}
+        {console.log(data.label)}
+        <select
+          className="select"
+          onChange={onChange}
+          defaultValue={data.label}
+        >
+          {options.map((el) => (
+            <option
+              key={el.value}
+              disabled={el.value === "0"}
+              value={`${el.value}`}
+            >
+              {el.value !== "0" && data.parentsLabel}
+              {el.label}
+            </option>
+          ))}
+        </select>
+        <Handle type="source" position={Position.Bottom} />
+      </>
+    );
+  }
+);

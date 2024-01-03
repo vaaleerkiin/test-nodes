@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { NodeType } from "../Types/node";
 
 export const nodeSlice = createSlice({
   name: "nodes",
@@ -17,7 +18,7 @@ export const nodeSlice = createSlice({
       },
     ],
     currentNodeId: 1,
-  },
+  } as { nodes: NodeType[]; currentNodeId: number },
   reducers: {
     addNode: (
       state,

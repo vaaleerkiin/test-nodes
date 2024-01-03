@@ -18,7 +18,6 @@ function App() {
 
   useEffect(() => {
     distpath(renderAdges(nodes.length - 1));
-    console.log("hghfgkh;fgk");
   }, [distpath, nodes]);
 
   return (
