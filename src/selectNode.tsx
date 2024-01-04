@@ -30,12 +30,7 @@ export default memo(
     return (
       <>
         {id !== "0" && <Handle type="target" position={Position.Top} />}
-        {console.log(data.label)}
-        <select
-          className="select"
-          onChange={onChange}
-          defaultValue={data.label}
-        >
+        <select className="select" onChange={onChange} value={data.label}>
           {options.map((el) => (
             <option
               key={el.value}
